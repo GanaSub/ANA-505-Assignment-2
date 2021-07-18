@@ -1,5 +1,5 @@
 # Game-day Simulator for Baseball (R)
-## this program simulates matches between home and away teams several times to predict the winner
+## This program simulates matches between home and away teams several times to predict the winner. So, we run simulations of the game day between two teams about 10000 times to get a probability of who is the likely winner on the game day.
 library(lattice)  # graphics package for probability matrix visual
 simulator <- function(home_mean,away_mean,niterations) { 
      # input runs scored means, output probability of winning for home team
@@ -18,14 +18,14 @@ simulator <- function(home_mean,away_mean,niterations) {
          }
      n_home_win <- sum(home_win)  ## we add all home_win and assign to n_home_win
      n_home_win/niterations  # return probability of away team winning 
-     } 
+     } ## this is the core part of the whole program where we see which team is better in the simulation. So, it is important to run multiple times to get a more accuarte answer.
 
 niterations <- 10000  # use smaller number for testing ## we run the iterations for 10000 times.
 # probability matrix for results... home team is rows, away team is columns
-probmat <- matrix(data = NA, nrow = 9, ncol = 9,  ## In this probability matrix, number of rows is 9 and number of cols is 9
+probmat <- matrix(data = NA, nrow = 9, ncol = 9,  ## In this probability matrix, number of rows is 9 and number of cols is 9. We could have had a smaller matrix table but a 9 by 9 table also works.
   dimnames = list(c(as.character(1:9)), c(as.character(1:9)))) 
-for (index_home in 1:9) ## we run for loop for the index_home variable between 1 and 9
-for (index_away in 1:9) ## we do the same for index_awau variable
+for (index_home in 1:9) ## we run a for loop for the index_home variable between 1 and 9
+for (index_away in 1:9) ## we do the same for index_away variable
 if (index_home != index_away) {
      probmat[index_home,index_away] <- 
         simulator(index_home, index_away, niterations) 
